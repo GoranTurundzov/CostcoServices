@@ -45,31 +45,49 @@ namespace ContosoServicesIntegration
                    new TsTimesheetEntry() {
 
                         parmResource =  5637145078,
-                        parmProjectDataAreaId = "USSI",
+                        parmProjectDataAreaId = "ussi",
+                        parmProjId = "00000101",
+                        parmProjActivityNumber = "W00002480",
+                        parmEntryDate = new DateTime(2019,9,4,10,10,12),
+                        parmHrsPerDay = 4
+                    },
+                   new TsTimesheetEntry() {
+
+                        parmResource =  5637145078,
+                        parmProjectDataAreaId = "ussi",
                         parmProjId = "00000101",
                         parmProjActivityNumber = "W00002480",
                         parmEntryDate = new DateTime(2019,9,4,10,10,12),
                         parmHrsPerDay = 4
                     }
-                  
+
             }.ToArray();
 
-            
-    
-            
+
+            //Test Entry
+            //new TsTimesheetEntry()
+            //{
+
+            //    parmResource = 5637145201,
+            //    parmTimesheetNumber = "00000055",
+            //    parmProjectDataAreaId = "ussi",
+            //    parmProjId = "00000092",
+            //    parmProjActivityNumber = "W00002388",
+            //    parmEntryDate = new DateTime(2019, 9, 9, 12, 00, 00),
+            //    parmHrsPerDay = 7,
+
+            //}
+
+
+
 
             TSTimesheetEntryList tSTimesheetEntryList = new TSTimesheetEntryList();
             tSTimesheetEntryList.__k_parmEntryList = arr;
 
-            var callContext = new CallContext()
-            {
-                Company = "Contoso Services International,",
-            };
-
             var res = await client.createOrUpdateTimesheetLineAsync(new CallContext(), tSTimesheetEntryList);
 
 
-     
+           
             client.Close();
 
            
