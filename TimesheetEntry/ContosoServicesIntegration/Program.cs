@@ -17,7 +17,7 @@ namespace ContosoServicesIntegration
             var clientId = "f5104fd2-6af1-4a52-8e18-97ac5102c9fc";
             var clientSecret = "4Mq8Q~SYLjYYV6P1WulHy.SKtATqULXZWx8MHccT";
             var resource = "00000015-0000-0000-c000-000000000000";
-            var oauthUrl = "https://login.windows.net/be-terna.com/oauth2/token";
+           
 
             // Get access token
             var httpClient = new HttpClient();
@@ -49,7 +49,8 @@ namespace ContosoServicesIntegration
                         parmProjId = "00000101",
                         parmProjActivityNumber = "W00002480",
                         parmEntryDate = new DateTime(2019,9,4,10,10,12),
-                        parmHrsPerDay = 4
+                        parmHrsPerDay = 4,
+                    
                     },
                    new TsTimesheetEntry() {
 
@@ -58,25 +59,34 @@ namespace ContosoServicesIntegration
                         parmProjId = "00000101",
                         parmProjActivityNumber = "W00002480",
                         parmEntryDate = new DateTime(2019,9,4,10,10,12),
-                        parmHrsPerDay = 4
+                        parmHrsPerDay = 4,
+                      
                     }
 
             }.ToArray();
 
 
             //Test Entry
-            //new TsTimesheetEntry()
-            //{
+            var arr1 = new List<TsTimesheetEntry>()
+            {
+                            new TsTimesheetEntry()
+            {
 
-            //    parmResource = 5637145201,
-            //    parmTimesheetNumber = "00000055",
-            //    parmProjectDataAreaId = "ussi",
-            //    parmProjId = "00000092",
-            //    parmProjActivityNumber = "W00002388",
-            //    parmEntryDate = new DateTime(2019, 9, 9, 12, 00, 00),
-            //    parmHrsPerDay = 7,
+                parmResource = 5637145201,
+                parmTimesheetNumber = "00000055",
+                parmProjectDataAreaId = "ussi",
+                parmProjId = "00000092",
+                parmProjActivityNumber = "W00002388",
+                parmEntryDate = new DateTime(2019, 9, 9, 12, 00, 00),
+                parmHrsPerDay = 7,
 
-            //}
+            }
+
+            }.ToArray();
+            var callContext1 = new CallContext()
+            {
+                Company = "Contoso Services International, USA"
+            };
 
 
 
@@ -84,6 +94,8 @@ namespace ContosoServicesIntegration
             TSTimesheetEntryList tSTimesheetEntryList = new TSTimesheetEntryList();
             tSTimesheetEntryList.__k_parmEntryList = arr;
 
+
+            //using soap api
             var res = await client.createOrUpdateTimesheetLineAsync(new CallContext(), tSTimesheetEntryList);
 
 
